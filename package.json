@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/SolomanGarcia/nodeapi-mern-social-network/issues"
   },
-  "homepage": "https://github.com/SolomanGarcia/nodeapi-mern-social-network#readme"
+  "homepage": "https://github.com/SolomanGarcia/nodeapi-mern-social-network#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
