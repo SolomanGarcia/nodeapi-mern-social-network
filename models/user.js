@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+let uuidv1 = require("uuidv1");
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -22,5 +23,20 @@ const userSchema = new mongoose.Schema({
   },
   updated: Date
 });
+
+// virtual field
+userSchema
+  .virtual("password")
+  .set(function (password) {
+    // create temporary variable called _password
+    this._password = password;
+    // generate a timpestamp
+    this.salt = uuidv1();
+    // encryptPassword()
+    this.hashed_password = this.encryptPassword(password);
+  })
+  .get(function () {
+    return this._password;
+  });
 
 module.exports = mongoose.model("User", userSchema);

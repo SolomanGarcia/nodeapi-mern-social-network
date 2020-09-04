@@ -1,5 +1,4 @@
 const Post = require("../models/post");
-let uuidv1 = require("uuidv1");
 
 console.log(uuidv1());
 
