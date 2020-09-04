@@ -1,4 +1,7 @@
 const Post = require("../models/post");
+let uuidv1 = require("uuidv1");
+
+console.log(uuidv1());
 
 exports.getPosts = (req, res) => {
   const post = Post.find()
