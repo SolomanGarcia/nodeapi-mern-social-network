@@ -1,7 +1,5 @@
 const Post = require("../models/post");
 
-console.log(uuidv1());
-
 exports.getPosts = (req, res) => {
   const post = Post.find()
     .select("_id title body")

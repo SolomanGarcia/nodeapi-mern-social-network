@@ -23,12 +23,14 @@ mongoose
 
 // bring in routes
 const postRoutes = require("./routes/post.js");
+const authRoutes = require("./routes/auth.js");
 
 //middleware
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(expressValidator());
 app.use("/", postRoutes);
+app.use("/", authRoutes);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
