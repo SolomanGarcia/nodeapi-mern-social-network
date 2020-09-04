@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const crytpo = require("crypto");
 let uuidv1 = require("uuidv1");
 
 const userSchema = new mongoose.Schema({
@@ -38,5 +39,20 @@ userSchema
   .get(function () {
     return this._password;
   });
+
+// methods
+userSchema.methods = {
+  encryptPassword: function (password) {
+    if (!password) return "";
+    try {
+      return crytpo
+        .createHmac("sha1", this.salt)
+        .update(password)
+        .digest("hex");
+    } catch (error) {
+      return "";
+    }
+  }
+};
 
 module.exports = mongoose.model("User", userSchema);
