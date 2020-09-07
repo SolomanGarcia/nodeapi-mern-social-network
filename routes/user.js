@@ -1,10 +1,11 @@
 const express = require("express");
 const { userById, allUsers, getUser } = require("../controllers/user");
+const { requieSignin } = require("../controllers/auth");
 
 const router = express.Router();
 
 router.get("/users", allUsers);
-router.get("/user/:userId", getUser);
+router.get("/user/:userId", requieSignin, getUser);
 
 // any route containing :userId, app will first execute userById()
 router.param("userId", userById);
