@@ -15,6 +15,17 @@ exports.signup = async (req, res) => {
 
 exports.signin = (req, res) => {
   // find the user based on email
+  const { email, password } = req.body;
+  User.findOne({ email }, (err, user) => {
+    // if err or no user
+    if (err || !user) {
+      return res.status(401).json({
+        error: "User with that email does not exist. Please signin or signup."
+      });
+    }
+    // if user is found make sure the email and password match
+    // create authentication method in model and use here
+  });
   // if error or no user
   // if user, authenticate
   // generate a token with user id and secret
