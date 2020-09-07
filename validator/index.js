@@ -43,4 +43,12 @@ exports.userSignupValidator = (req, res, next) => {
     .matches(/\d/)
     .withMessage("Password must contain a number");
   // check for errors
+  const errors = req.validationErrors();
+  // if error, show as they appear
+  if (errors) {
+    const firstError = errors.map((error) => error.msg)[0];
+    return res.status(400).json({ error: firstError });
+  }
+  // procee to next middleware
+  next();
 };
