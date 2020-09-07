@@ -25,10 +25,17 @@ exports.signin = (req, res) => {
     }
     // if user is found make sure the email and password match
     // create authentication method in model and use here
+    if (!user.authenticate(password)) {
+      return res.status(401).json({
+        error: "Email and password do not match"
+      });
+    }
+    // generate a token with user id and secret
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET);
+    // persist the token as 't' in cookir with expiry date
+    res.cookie("t", token, { expire: new Date() + 9999 });
+    // return response with user and token to frontend client
+    const { _id, name, email } = user;
+    return res.json({ token, user: { _id, email, name } });
   });
-  // if error or no user
-  // if user, authenticate
-  // generate a token with user id and secret
-  // persist the token as 't' in cookir with expiry date
-  // return response with user and token to frontend client
 };
