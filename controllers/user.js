@@ -64,8 +64,6 @@ exports.deleteUser = (req, res, next) => {
         error: err
       });
     }
-    user.hashed_password = undefined;
-    user.salt = undefined;
-    res.json({ user });
+    res.json({ message: "User deleted successfully" });
   });
 };
