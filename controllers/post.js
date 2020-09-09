@@ -16,7 +16,7 @@ exports.createPost = (req, res) => {
   form.keepExtensions = true;
   form.parse(req, (err, fields, files) => {
     if (err) {
-      return res.status(400).josn({
+      return res.status(400).json({
         error: "Image could not be uploaded"
       });
     }
