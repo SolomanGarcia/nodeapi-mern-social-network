@@ -5,6 +5,7 @@ const {
   postsByUser,
   postById,
   isPoster,
+  updatePost,
   deletePost
 } = require("../controllers/post");
 const { requireSignin } = require("../controllers/auth");
@@ -22,6 +23,7 @@ router.post(
 );
 
 router.get("/posts/by/:userId", postsByUser);
+router.put("/post/:postId", requireSignin, isPoster, updatePost);
 router.delete("/post/:postId", requireSignin, isPoster, deletePost);
 
 // any route containing :userId, app will first execute userById()
