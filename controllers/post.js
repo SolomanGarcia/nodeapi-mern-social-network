@@ -69,3 +69,13 @@ exports.postsByUser = (req, res) => {
       res.json(posts);
     });
 };
+
+exports.isPoster = (req, res, next) => {
+  let isPoster = req.post && req.auth && req.post.postedBy._id === req.auth._id;
+  if (!poster) {
+    return res.status(403).json({
+      error: "User is not authorized"
+    });
+  }
+  next();
+};
