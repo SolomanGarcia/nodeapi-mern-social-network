@@ -121,7 +121,7 @@ exports.addFollowing = (req, res, next) => {
     {
       $push: { following: req.body.followId }
     },
-    (err, result) => {
+    (err) => {
       if (err) {
         return res.status(400).json({ error: err });
       }
@@ -147,7 +147,7 @@ exports.addFollower = (req, res) => {
         });
       }
       result.hashed_password = undefined;
-      result.salt = undefinedS;
+      result.salt = undefined;
       res.json(result);
     });
 };
@@ -185,7 +185,7 @@ exports.removeFollower = (req, res) => {
         });
       }
       result.hashed_password = undefined;
-      result.salt = undefinedS;
+      result.salt = undefined;
       res.json(result);
     });
 };
