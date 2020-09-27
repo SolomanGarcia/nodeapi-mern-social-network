@@ -114,3 +114,7 @@ exports.photo = (req, res, next) => {
   res.set("content-Type", req.post.photo.contentTypt);
   return res.send(req.post.photo.data);
 };
+
+exports.singlePost = (req, res) => {
+  return res.json(req.post);
+};
