@@ -45,11 +45,11 @@ exports.createPost = (req, res) => {
 
     req.profile.hashed_password = undefined;
     req.profile.salt = undefined;
-
     post.postedBy = req.profile;
+
     if (files.photo) {
       post.photo.data = fs.readFileSync(files.photo.path);
-      post.photo.contentTypt = files.photo.type;
+      post.photo.contentType = files.photo.type;
     }
     post.save((err, result) => {
       if (err) {
@@ -65,7 +65,7 @@ exports.createPost = (req, res) => {
 exports.postsByUser = (req, res) => {
   Post.find({ postedBy: req.profile._id })
     .populate("postedBy", "_id name")
-    .select("_id title body created, likes")
+    .select("_id title body created likes")
     .sort("_created")
     .exec((err, posts) => {
       if (err) {
@@ -126,7 +126,7 @@ exports.updatePost = (req, res, next) => {
           error: err
         });
       }
-      res.json(user);
+      res.json(post);
     });
   });
 };

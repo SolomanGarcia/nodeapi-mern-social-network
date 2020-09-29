@@ -12,7 +12,7 @@ const postSchema = new mongoose.Schema({
   },
   photo: {
     data: Buffer,
-    contenType: String
+    contentType: String
   },
   postedBy: {
     type: ObjectId,
@@ -27,7 +27,7 @@ const postSchema = new mongoose.Schema({
   comments: [
     {
       text: String,
-      created: { type: Date, default: Date.now() },
+      created: { type: Date, default: Date.now },
       postedBy: { type: ObjectId, ref: "User" }
     }
   ]
