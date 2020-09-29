@@ -65,7 +65,7 @@ userSchema.methods = {
   encryptPassword: function (password) {
     if (!password) return "";
     try {
-      return crytpo
+      return crypto
         .createHmac("sha1", this.salt)
         .update(password)
         .digest("hex");
@@ -74,5 +74,11 @@ userSchema.methods = {
     }
   }
 };
+
+// pre middleware
+userSchema.pre("remove", function (next) {
+  Post.remove({ postedBy: this._id }).exec();
+  next();
+});
 
 module.exports = mongoose.model("User", userSchema);
