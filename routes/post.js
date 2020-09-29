@@ -12,7 +12,8 @@ const {
   like,
   unlike,
   comment,
-  uncomment
+  uncomment,
+  updateComment
 } = require("../controllers/post");
 const { requireSignin } = require("../controllers/auth");
 const { userById } = require("../controllers/user");
@@ -29,6 +30,7 @@ router.put("/post/unlike", requireSignin, unlike);
 // comments
 router.put("/post/comment", requireSignin, comment);
 router.put("/post/uncomment", requireSignin, uncomment);
+router.put("/post/updatecomment", requireSignin, updateComment);
 
 // post routes
 router.post(

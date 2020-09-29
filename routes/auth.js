@@ -4,7 +4,8 @@ const {
   signin,
   signout,
   forgotPassword,
-  resetPassword
+  resetPassword,
+  socialLogin
 } = require("../controllers/auth");
 
 const {
@@ -23,6 +24,9 @@ router.get("/signout", signout);
 // password forgot and reset routes
 router.put("/forgot-password", forgotPassword);
 router.put("/reset-password", passwordResetValidator, resetPassword);
+
+// then use this route for social login
+router.post("/social-login", socialLogin);
 
 // any route containing :userId, app will first execute userById()
 router.param("userId", userById);
